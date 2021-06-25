@@ -1,1 +1,1 @@
-# template-github-base
+# Nginx Docker image with auth basic
