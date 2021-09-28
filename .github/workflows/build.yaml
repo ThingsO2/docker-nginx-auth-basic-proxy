@@ -64,3 +64,12 @@ jobs:
           channel: '#deployments'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Delete tag and release when it fails
+        uses: dev-drprasad/delete-tag-and-release@v0.2.0
+        if: failure()
+        with:
+          delete_release: true
+          tag_name: ${{ github.event.release.tag_name }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
