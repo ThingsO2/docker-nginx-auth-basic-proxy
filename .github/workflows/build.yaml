@@ -73,3 +73,7 @@ jobs:
           tag_name: ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Clean gcr images
+        run: |
+          curl -X POST -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://gcr-cleaner-m3srfcef5q-ew.a.run.app/http -d '{"repos":["gcr.io/monom-cicd-tools/${{ github.event.repository.name }}"], "tag_filter_all":".*", "dry_run":false,"keep":10}'
