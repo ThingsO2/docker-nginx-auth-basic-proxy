@@ -21,7 +21,7 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           project_id: monom-cicd-tools
-          credentials_json: ${{ secrets.SA_KEY }}
+          credentials_json: $${{ secrets.SA_KEY }}
 
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
